@@ -10,7 +10,7 @@ loadingScreen();
 setUpShowAllButton();
 setupSearchForm();
 
-// loading screen aklders når vi henter data 
+// loading screen kaldes når vi henter data 
 function loadingScreen() {
     myAppElement.innerHTML = "<h2>Loading...</h2>";
 
@@ -46,10 +46,32 @@ function loadingScreen() {
 
     }
 
+    const myCharachtersElement = document.getElementById('charachterSelect');
 
-    function fetchCharachterPage(){
-        console.log('fetchCharachterPage');
+    fetchCharachterPage("https://api.disneyapi.dev/characters");
+
+    function fetchCharachterPage(chrachterId){
+        fetch(chrachterId)
+        .then (
+            (response) => {
+        // console.log('fetchCharachterPage');
+        return response.json();
     }
+)
+.then((chrachterId) => {
+    console.log(`fetchCharachterPage:`, chrachterId);
+    setupCharachterSelection(chrachterId);
+})
+.catch((error) => {
+    console.log(error);
+});
+    }
+
+    // function fetchCharachterPage(){
+    //     console.log('fetchCharachterPage');
+    // }
+
+
 
 
 
