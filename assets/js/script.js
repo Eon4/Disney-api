@@ -73,6 +73,7 @@ function setUpShowAllButton() {
         myPage = 1;
         fetchAllCharacters();
     });
+    
 }
 
 
