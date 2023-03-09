@@ -1,3 +1,56 @@
+// script for disney api 
+
+// loading screen 
+
+let myPage=1;
+const myAppElement=document.getElementById('myApp');
+
+//entry point
+loadingScreen();
+setUpShowAllButton();
+setupSearchForm();
+
+// loading screen aklders når vi henter data 
+function loadingScreen() {
+    myAppElement.innerHTML = "<h2>Loading...</h2>";
+
+    }
+
+    function setUpShowAllButton(){
+        let showAallButton = document.getElementById('showAllButton');
+        showAallButton.addEventListener('click',(e)=>{
+            myPage = 1;
+            fetchCharachterPage();
+
+        });
+    }
+
+    function setupSearchForm() {
+
+        let searchButton = document.getElementById('searchButton');
+
+        searchButton.addEventListener('click',(e)=>{
+            e.preventDefault();
+
+            let searchInput = document.getElementById('searchInput');
+            let myValue = searchInput.value;
+
+            if (myValue) {
+                console.log('vi har string');
+            }
+            else {
+                alert('indtast i søgefeltet');
+            }
+
+        });
+
+    }
+
+
+    function fetchCharachterPage(){
+        console.log('fetchCharachterPage');
+    }
+
 
 
 // {
