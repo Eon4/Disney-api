@@ -251,7 +251,7 @@ function makePageButtons() {
     });
 
     let nextButton = document.createElement('button');
-    nextButton.innerText = 'Next';
+    nextButton.innerText = 'next';
     nextButton.addEventListener('click', (e) => {
         myPage++;
         if (myPage >= 149) {
