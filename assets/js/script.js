@@ -64,7 +64,7 @@ function showCharacter(myData, mySender) {
     switch(mySender) {
         case "showAll":
             let myReturnButton = document.createElement('button');
-            myReturnButton.innerText= 'tilbage';
+            myReturnButton.innerText= 'Tilbage';
 
             myReturnButton.addEventListener('click', (e) => {
                 fetchAllCharacters();
@@ -140,7 +140,7 @@ function fetchSearch(myName) {
         if (response.ok) {
             return response.json();
         } else {
-            alert("api error du får lige mickey mouse");
+            alert("API error du får lige mickey mouse");
             fetchOneCharacter(4703);
 
         }
@@ -185,7 +185,7 @@ function fetchAllCharacters() {
         if (response.ok) {
             return response.json();
         } else {
-            alert("api error du får lige mickey mouse");
+            alert("API error du får lige mickey mouse");
             fetchOneCharacter(4703);
 
         }
@@ -241,7 +241,7 @@ function showAll(myData) {
 function makePageButtons() {
 
     let prevButton = document.createElement('button');
-    prevButton.innerText = 'prev';
+    prevButton.innerText = 'Prev';
     prevButton.addEventListener('click', (e) => {
         myPage--;
         if (myPage < 1) {
@@ -251,7 +251,7 @@ function makePageButtons() {
     });
 
     let nextButton = document.createElement('button');
-    nextButton.innerText = 'next';
+    nextButton.innerText = 'Next';
     nextButton.addEventListener('click', (e) => {
         myPage++;
         if (myPage >= 149) {
