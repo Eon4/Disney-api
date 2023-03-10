@@ -1,0 +1,127 @@
+@charset "UTF-8";
+/* ---------------- VARIABLES IN HTML ----------------------- */
+:root {
+  --white: #ffffff;
+  --grey: rgb(138, 138, 138);
+  --black: rgb(20, 19, 19);
+  --gold: #ff9d00;
+  --shine:#ffee00;
+  --burningsun: #fb5800;
+  --greygold: #fcb747;
+  --greenbutton: #14d81b;
+  --headerblue: #39599c;
+  --darkblue: #1346b3;
+
+}
+
+* {
+  box-sizing: border-box;
+  margin: 5px;
+  padding: 0;
+  text-decoration: none;
+  font-family: "OpenSans", sans-serif;
+  list-style: none;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* ----------------------- BODY --------------------------- */
+
+body {
+  background-color: var(--white);
+}
+/* -------------------------------- TEXT ------------------------------ */
+
+h1 {
+    font-family: Waltograph;
+    color: var(--white);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* text-align: center; */
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: var(--gold);
+  padding-top: 3%;
+  padding-bottom: 1%;
+
+}
+
+p {
+  color: var(--burningsun);
+}
+/* -----------------------  MAIN STUFF AND BUTTONS --------------------------- */
+
+header{
+    background-color:#39599c;
+}
+
+#searchInput {
+    font-family: sans-serif;
+    font-weight: bold;
+    background-color: var(--headerblue);
+    color: var(--white);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 5px;
+    border-width: 5px;
+    border-style: groove;
+    border-color: var(--greenbutton);
+    padding: 4px;
+}
+
+#searchButton{
+    font-family: sans-serif;
+    color: var(white);
+    font-size: medium;
+    font-weight: bold;
+    background-color: #14d81b;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 8px;
+    border-width: 5px;
+    border-style: groove;
+    border-color: var(--greenbutton);
+    padding: 4px;
+}
+
+#showAllButton {
+    font-family: sans-serif;
+    color: var(white);
+    font-size: medium;
+    font-weight: bold;
+    background-color: var(--darkblue);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 8px;
+    border-width: 5px;
+    border-style: groove;
+    border-color: var(--headerblue);
+    padding: 4px;
+}
+
+#showAllButton:hover{
+    background-color: var(--gold);
+    color: var(--black);
+    transition: 0.4s;
+}
+
+#searchButton:hover{
+    background-color: var(--gold);
+    color: var(--black);
+    transition: 0.4s;
+
+}

@@ -1,16 +1,16 @@
-// script for disney api 
+// SCRIPT FOR DISNEY API 
 
 let myPage = 1;
 const myAppElement = document.getElementById('myApp');
 
-// entry point
+// ENTRY POINT
 loadingScreen();
 setUpShowAllButton();
 setupSearchForm();
 fetchOneCharacter(4703);
 
 
-
+//FETCH FUNCTION FOR AT HENTE DATA OM EN KARAKTER DER ER SØGT PÅ
 function fetchOneCharacter(myId) {
     let URI = `https://api.disneyapi.dev/characters/${myId}`
 
@@ -22,7 +22,6 @@ function fetchOneCharacter(myId) {
         } else {
             alert("api error du får lige mickey mouse");
             fetchOneCharacter(4703);
-
         }
 
 
@@ -31,8 +30,12 @@ function fetchOneCharacter(myId) {
 
         //console.log(data);
         showCharacter(data);
+//ERROR MESSAGE
+    }).catch((err) => {
 
-    }).catch();
+        console.error(err.message);
+
+    });
 
 }
 
@@ -60,12 +63,12 @@ function showCharacter(myData) {
 
 }
 
-// loading screen  kaldes når vi henter data
+//LOADING SCREEN KALDES NÅR VI HENTER DATA
 function loadingScreen() {
     myAppElement.innerHTML = "<h2>Loading...</h2>";
 }
 
-
+//FUNKTION FOR VIS ALLE KNAP SOM HENTER ALLE DATA
 function setUpShowAllButton() {
 
     let showAllButton = document.getElementById('showAllButton');
@@ -73,11 +76,10 @@ function setUpShowAllButton() {
         myPage = 1;
         fetchAllCharacters();
     });
-    
 }
 
 
-
+//FUNKTION FOR VORES FORM MED SØGEFUNKTION
 function setupSearchForm() {
 
     let searchButton = document.getElementById('searchButton');
@@ -89,24 +91,139 @@ function setupSearchForm() {
         let myValue = searchInput.value;
 
         if (myValue) {
-            console.log(' vi har string ' + myValue);
+            console.log('Vi har string' + myValue);
+            fetchSearch(myValue);
         }
         else {
-            alert('indtast i søge felt.');
+            alert('Indtast i søgefelt.');
         }
 
     });
 
 }
 
+
+//FETCHER KARAKTERE PAGE
 function fetchCharacterPage() {
     console.log('fetchCharacterPage');
 }
 
-    // function fetchCharachterPage(){
-    //     console.log('fetchCharachterPage');
-    // }
 
+//FETCH SØGERESULTAT
+function fetchSearch(myName) {
+    let URI = `https://api.disneyapi.dev/character?name=${myName}`
+
+
+    fetch(URI).then((response) => {
+        //console.log(response);
+
+        if (response.ok) {
+            return response.json();
+        } else {
+            alert("api error du får lige mickey mouse");
+            fetchOneCharacter(4703);
+
+        }
+
+
+
+    }).then((data) => {
+
+        console.log(data);
+        showSearch(data.data);
+
+    }).catch((err) => {
+
+        console.error(err.message);
+
+    });
+
+}
+
+//FUNKTION SOM VISER SØGERESULTATET MED BILLEDE OG NAVN
+function showSearch(myData) {
+
+    let myHTML = '';
+
+    myData.map((myCharacter) => {
+        myHTML += `<h3>${myCharacter.name}</h3><img src="${myCharacter.imageUrl}"></br>`;
+
+    });
+
+    myAppElement.innerHTML = myHTML;
+}
+
+
+//HENTER ALLE KARAKTERE
+function fetchAllCharacters() {
+
+    let URI = `https://api.disneyapi.dev/characters?page=${myPage}`
+
+    fetch(URI).then((response) => {
+        //console.log(response);
+
+        if (response.ok) {
+            return response.json();
+        } else {
+            alert("api error du får lige mickey mouse");
+            fetchOneCharacter(4703);
+
+        }
+
+    }).then((data) => {
+
+        console.log(data);
+
+        showAll(data.data);
+
+    }).catch((err) => {
+        console.error(err.message);
+
+    });
+
+}
+//VISER ALLE DATA
+function showAll(myData) {
+
+    myAppElement.innerHTML = "";
+    makePageButtons();
+
+    let myHTML = '';
+
+    myData.map((myCharacter) => {
+        myHTML += `<h3>${myCharacter.name}</h3><img src="${myCharacter.imageUrl}"></br>`;
+
+    });
+
+    myAppElement.innerHTML += myHTML;
+    makePageButtons();
+}
+//FUNKTION FOR KNAPPER MED NEXT OG PREV
+function makePageButtons() {
+
+    let prevButton = document.createElement('button');
+    prevButton.innerText = 'prev';
+    prevButton.addEventListener('click', (e) => {
+        myPage--;
+        if (myPage < 1) {
+            myPage = 1;
+        }
+        fetchAllCharacters();
+    });
+
+    let nextButton = document.createElement('button');
+    nextButton.innerText = 'next';
+    nextButton.addEventListener('click', (e) => {
+        myPage++;
+        if (myPage >= 149) {
+            myPage = 149;
+        }
+        fetchAllCharacters();
+    });
+    myAppElement.appendChild(prevButton);
+    myAppElement.appendChild(nextButton);
+
+}
 
 
 
