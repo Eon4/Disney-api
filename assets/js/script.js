@@ -11,7 +11,7 @@ fetchOneCharacter(4703);
 
 
 //FETCH FUNCTION FOR AT HENTE DATA OM EN KARAKTER DER ER SØGT PÅ
-function fetchOneCharacter(myId) {
+function fetchOneCharacter(myId, mySender) {
     let URI = `https://api.disneyapi.dev/characters/${myId}`
 
     fetch(URI).then((response) => {
@@ -29,7 +29,7 @@ function fetchOneCharacter(myId) {
     }).then((data) => {
 
         //console.log(data);
-        showCharacter(data);
+        showCharacter(data, mySender);
 //ERROR MESSAGE
     }).catch((err) => {
 
@@ -39,7 +39,7 @@ function fetchOneCharacter(myId) {
 
 }
 
-function showCharacter(myData) {
+function showCharacter(myData, mySender) {
     //  myAppElement
     console.log(myData.name);
 
@@ -60,6 +60,26 @@ function showCharacter(myData) {
 
     let myHTML = `<h2>${myData.name}</h2><img src="${myData.imageUrl}"><p>${myFilms}</p><p>${myTvShows}</p>`;
     myAppElement.innerHTML = myHTML;
+
+    switch(mySender) {
+        case "showAll":
+            let myReturnButton = document.createElement('button');
+            myReturnButton.innerText= 'tilbage';
+
+            myReturnButton.addEventListener('click', (e) => {
+                fetchAllCharacters();
+
+            });
+            myAppElement.appendChild(myReturnButton);
+            break;
+
+        case "searchResult":
+            break;
+
+        default:
+            break;
+
+    }
 
 }
 
@@ -185,7 +205,7 @@ function fetchAllCharacters() {
 //VISER ALLE DATA
 function showAll(myData) {
 
-    myAppElement.innerHtml = "";
+    myAppElement.innerHTML = "";
     makePageButtons();
 
     let myHTML = '';
@@ -200,7 +220,10 @@ function showAll(myData) {
         myCard.innerHTML = myHTML;
 
         myCard.addEventListener(`click`, (e) => {
-            console.log(`klik:`+e.target);
+            // console.log(`klik`+e.target);
+            // console.log(`id:`+myCharacter._id);
+            fetchOneCharacter(myCharacter._id,"showAll");
+
         });
 
         myAppElement.appendChild(myCard);
