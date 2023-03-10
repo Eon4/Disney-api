@@ -185,19 +185,35 @@ function fetchAllCharacters() {
 //VISER ALLE DATA
 function showAll(myData) {
 
-    myAppElement.innerHTML = "";
+    myAppElement.innerHtml = "";
     makePageButtons();
 
     let myHTML = '';
 
     myData.map((myCharacter) => {
-        myHTML += `<h3>${myCharacter.name}</h3><img src="${myCharacter.imageUrl}"></br>`;
+        console.log(`_id:`+myCharacter._id);
+
+        let myCard = document.createElement(`article`);
+
+        let myHTML = `<h3>${myCharacter.name}</h3><img src="${myCharacter.imageUrl}"></br>`;
+
+        myCard.innerHTML = myHTML;
+
+        myCard.addEventListener(`click`, (e) => {
+            console.log(`klik:`+e.target);
+        });
+
+        myAppElement.appendChild(myCard);
 
     });
 
-    myAppElement.innerHTML += myHTML;
+    // myAppElement.innerHTML += myHTML;
+
+
+
     makePageButtons();
 }
+
 //FUNKTION FOR KNAPPER MED NEXT OG PREV
 function makePageButtons() {
 
